@@ -64,12 +64,18 @@ div {
     flex-wrap: wrap;
   }
   
+  .form {
+    width: 100%;
+    height: 100%;
+  }
   .data {
-    max-width: 50%;
+    width: 50%;
+    box-sizing: border-box;
     flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 70%;
   }
 
   .about {
@@ -89,7 +95,8 @@ div {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 50%;
+    width: 50%;
+    box-sizing: border-box;
     flex-grow: 1;
     height: 60%;
   }
