@@ -11,9 +11,9 @@
         <p class="ta-center">Digite a semente a ser usada no sorteio</p>
         <input class="w-50 m-auto" type="text" placeholder="Semente">
         <p class="ta-center">
-          Digite os itens abaixo, cada um em uma linha
+          Digite ou copie os itens abaixo, cada um em uma linha
         </p>
-        <textarea cols=50 rows=15 class="m-auto border"></textarea>
+        <textarea cols=67 rows=19 class="m-auto border"></textarea>
         <button class="shuffle border">Sortear</button>
       </form>
     </div>
@@ -22,67 +22,21 @@
       <div class="result-list-div ta-center" style="">
         <p style="font-size: 22px;">Resultado do sorteio</p>
         <ol class="ta-left results-list">
-          <li>(02C737FF2B...) - Item 15</li>
-          <li>(189C13DD91...) - Item 14</li>
-          <li>(2615805551...) - Item 2</li>
-          <li>(3D787F52D7...) - Item 5</li>
-          <li>(3F59E6B660...) - Item 1</li>
-          <li>(4B4A2CBB22...) - Item 4</li>
-          <li>(54B714D231...) - Item 11</li>
-          <li>(6CF6EBE372...) - Item 7</li>
-          <li>(7EB5C3A3BB...) - Item 6</li>
-          <li>(AC22D6AFA9...) - Item 10</li>
-          <li>(AD83EBDA28...) - Item 12</li>
-          <li>(D4FF9213E9...) - Item 9</li>
-          <li>(DAE2D99696...) - Item 8</li>
-          <li>(EC614B6AEA...) - Item 13</li>
-          <li>(EDE1240992...) - Item 3</li>
-          
-          <li>(02C737FF2B...) - Item 15</li>
-          <li>(189C13DD91...) - Item 14</li>
-          <li>(2615805551...) - Item 2</li>
-          <li>(3D787F52D7...) - Item 5</li>
-          <li>(3F59E6B660...) - Item 1</li>
-          <li>(4B4A2CBB22...) - Item 4</li>
-          <li>(54B714D231...) - Item 11</li>
-          <li>(6CF6EBE372...) - Item 7</li>
-          <li>(7EB5C3A3BB...) - Item 6</li>
-          <li>(AC22D6AFA9...) - Item 10</li>
-          <li>(AD83EBDA28...) - Item 12</li>
-          <li>(D4FF9213E9...) - Item 9</li>
-          <li>(DAE2D99696...) - Item 8</li>
-          <li>(EC614B6AEA...) - Item 13</li>
-          <li>(EDE1240992...) - Item 3</li>
-          <li>(02C737FF2B...) - Item 15</li>
-          <li>(189C13DD91...) - Item 14</li>
-          <li>(2615805551...) - Item 2</li>
-          <li>(3D787F52D7...) - Item 5</li>
-          <li>(3F59E6B660...) - Item 1</li>
-          <li>(4B4A2CBB22...) - Item 4</li>
-          <li>(54B714D231...) - Item 11</li>
-          <li>(6CF6EBE372...) - Item 7</li>
-          <li>(7EB5C3A3BB...) - Item 6</li>
-          <li>(AC22D6AFA9...) - Item 10</li>
-          <li>(AD83EBDA28...) - Item 12</li>
-          <li>(D4FF9213E9...) - Item 9</li>
-          <li>(DAE2D99696...) - Item 8</li>
-          <li>(EC614B6AEA...) - Item 13</li>
-          <li>(EDE1240992...) - Item 3</li>
-          <li>(02C737FF2B...) - Item 15</li>
-          <li>(189C13DD91...) - Item 14</li>
-          <li>(2615805551...) - Item 2</li>
-          <li>(3D787F52D7...) - Item 5</li>
-          <li>(3F59E6B660...) - Item 1</li>
-          <li>(4B4A2CBB22...) - Item 4</li>
-          <li>(54B714D231...) - Item 11</li>
-          <li>(6CF6EBE372...) - Item 7</li>
-          <li>(7EB5C3A3BB...) - Item 6</li>
-          <li>(AC22D6AFA9...) - Item 10</li>
-          <li>(AD83EBDA28...) - Item 12</li>
-          <li>(D4FF9213E9...) - Item 9</li>
-          <li>(DAE2D99696...) - Item 8</li>
-          <li>(EC614B6AEA...) - Item 13</li>
-          <li>(EDE1240992...) - Item 3</li>
+          <li>(0x02C737FF2B...) - Item 15</li>
+          <li>(0x189C13DD91...) - Item 14</li>
+          <li>(0x2615805551...) - Item 2</li>
+          <li>(0x3D787F52D7...) - Item 5</li>
+          <li>(0x3F59E6B660...) - Item 1</li>
+          <li>(0x4B4A2CBB22...) - Item 4</li>
+          <li>(0x54B714D231...) - Item 11</li>
+          <li>(0x6CF6EBE372...) - Item 7</li>
+          <li>(0x7EB5C3A3BB...) - Item 6</li>
+          <li>(0xAC22D6AFA9...) - Item 10</li>
+          <li>(0xAD83EBDA28...) - Item 12</li>
+          <li>(0xD4FF9213E9...) - Item 9</li>
+          <li>(0xDAE2D99696...) - Item 8</li>
+          <li>(0xEC614B6AEA...) - Item 13</li>
+          <li>(0xEDE1240992...) - Item 3</li>
         </ol>
       </div>
     </div>
@@ -93,7 +47,7 @@
         <ol>
           <li>Cada item é concatenado da forma: <i> número da linha+item+semente</i>. Formando uma sentença</li>
           <li>Cada sentença é então, codificada utilizando SHA256 como método</li>
-          <li>Por fim, a sequência de códigos em SHA256 é ordenada alfabeticamente</li>
+          <li>Por fim, a sequência de códigos em SHA256 é ordenada lexicograficamente</li>
         </ol>
       </p>       
     </div>
