@@ -9,6 +9,9 @@ body {
   flex-direction: column;
 }
 
+.display-none {
+  display: none;
+}
 .w-50 {
   width: 50%;
 }
