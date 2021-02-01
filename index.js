@@ -12,6 +12,9 @@ const shuffle = async () => {
   hashedItems.sort((a, b) => a.hash.localeCompare(b.hash));
 
   const list = document.getElementById('resultList');
+  const usedSeed = document.getElementById('baseSeed');
+
+
   hashedItems.forEach(item => {
     const li = document.createElement("li");
     const value = document.createTextNode(`(0x${item.hash.substr(0, 10).toUpperCase()}...) ${item.value}`);
@@ -19,6 +22,8 @@ const shuffle = async () => {
 
     list.appendChild(li);
   });
+
+  usedSeed.textContent = seed;
   list.classList.remove('display-none');
 }
 
@@ -36,22 +41,3 @@ const sha256 = async (message) => {
   const hashHex = hashArray.map(b => ('00' + b.toString(16)).slice(-2)).join('');
   return hashHex;
 }
-
-
-/*
-Item 1
-Item 2
-Item 3
-Item 4
-Item 5
-Item 6
-Item 7
-Item 8
-Item 9
-Item 10
-Item 11
-Item 12
-Item 13
-Item 14
-Item 15
-*/
