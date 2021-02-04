@@ -1,5 +1,5 @@
 const shuffle = async () => {
-  const seed = document.getElementById('seed').value;
+  const seed = document.getElementById('seed').value || Date.now();
   const items = document.getElementById('items').value.split('\n');
 
   const hashedItems = await Promise.all(items.map(async (item, i) => {
@@ -14,6 +14,7 @@ const shuffle = async () => {
   const list = document.getElementById('resultList');
   const usedSeed = document.getElementById('baseSeed');
 
+  list.innerHTML = '';
 
   hashedItems.forEach(item => {
     const li = document.createElement("li");

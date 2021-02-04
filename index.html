@@ -32,6 +32,7 @@
         O sorteio é realizado nos seguintes passos:
         <ol>
           <li>Cada item é concatenado da forma: <i> número da linha+item+semente</i>. Formando uma sentença</li>
+          <li>Caso nenhuma semente seja informada, será utilizado o timestamp do momento que o sorteio for realizado</li>
           <li>Cada sentença é então, codificada utilizando SHA256 como método</li>
           <li>Por fim, a sequência de códigos em SHA256 é ordenada lexicograficamente</li>
         </ol>
