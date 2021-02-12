@@ -9,17 +9,28 @@
   <body>
     <div class="data divisory">
       <form class="form">
-        <p class="ta-center">Digite a semente a ser usada no sorteio</p>
-        <input id="seed" class="w-50 m-auto" type="text" placeholder="Semente">
+        <p class="ta-center">Escolha a origem da semente que será usada no sorteio</p>
+        <select id="seedOrigin" onchange="handleSeedOriginChange(this)">
+          <option value="nist" selected>Farol de aleatoriedade NIST</option>
+          <option value="uchile">Farol de aleatoriedade Universidade do Chile</option>
+          <option value="inmetro">Farol de aleatoriedade INMETRO</option>
+          <option value="user">Inserir manualmente</option>
+        </select>
+        <label for="seed" id="seed_label" class="seed_label display-none">
+          Inserir semente
+          <input id="seed" class="w-50 m-auto" type="text" placeholder="Semente">
+        </label>
         <p class="ta-center">
           Digite ou copie os itens abaixo, cada um em uma linha
         </p>
-        <textarea id="items" style="width: 100%; height: 80%;" class="m-auto border"></textarea>
+        <textarea id="items" class="items_input" class="m-auto border"></textarea>
         <button type="button" onclick="shuffle()" class="shuffle border">Sortear</button>
       </form>
     </div>
     <div class="results ta-center">
-      <span class="seed m-auto">Semente utilizada: <b id="baseSeed"></b></span>
+      <span class="msg display-none" id="msg"></span>
+      <br>
+      <span class="seed m-auto">Semente utilizada: <br><b id="baseSeed" style="word-break: break-all;"></b></span>
       <div class="result-list-div ta-center" >
         <p style="font-size: 22px;">Resultado do sorteio</p>
         <ol id="resultList" class="ta-left results-list display-none">

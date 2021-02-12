@@ -1,5 +1,34 @@
+const urls = {
+  nist: 'https://beacon.nist.gov/beacon/2.0/pulse/time/previous/',
+  inmetro: 'https://beacon.inmetro.gov.br/beacon/2.0/pulse/time/previous/',
+  uchile: 'https://random.uchile.cl/beacon/2.0/pulse/time/previous/',
+}
 const shuffle = async () => {
-  const seed = document.getElementById('seed').value || Date.now();
+  const seedOrigin = document.getElementById("seedOrigin").value;
+  let seed;
+  if(seedOrigin === 'user'){
+    seed = document.getElementById('seed').value || Date.now();
+  } else {
+    const timestampShuffle = Date.now();
+    const timestampPulse = timestampShuffle + 60000;
+    const url = urls[seedOrigin] + timestampPulse;
+    const dateShuffle = new Date(timestampShuffle);
+    const datePulse = new Date(timestampPulse);
+
+    const msg = `O sorteio foi realizado às ${dateShuffle.getHours()}:${dateShuffle.getMinutes()}.
+      A semente utilizada será o pulso gerado às ${datePulse.getHours()}:${datePulse.getMinutes()}
+    `
+
+    const msgElemnt = document.getElementById('msg'); 
+    msgElemnt.classList.remove('display-none');
+    msgElemnt.textContent = msg;
+    await wait(60000);
+
+    const response = await fetch(url);
+    const pulse = (await response.json()).pulse;
+    seed = pulse.outputValue;
+
+  }
   const items = document.getElementById('items').value.split('\n');
 
   const hashedItems = await Promise.all(items.map(async (item, i) => {
@@ -41,4 +70,16 @@ const sha256 = async (message) => {
   // convert bytes to hex string                  
   const hashHex = hashArray.map(b => ('00' + b.toString(16)).slice(-2)).join('');
   return hashHex;
+}
+
+const handleSeedOriginChange = (element) => {
+  if(element.value === 'user'){
+    document.getElementById('seed_label').classList.remove('display-none');
+  } else {
+    document.getElementById('seed_label').classList.add('display-none');
+  }
+}
+
+const wait = (ms) => {
+  return new Promise(resolve => setTimeout(resolve, ms))
 }

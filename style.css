@@ -31,6 +31,9 @@ body {
   text-align: center;
 }
 
+.seed_label {
+  margin-top: 1rem;
+}
 div {
   padding: 1em;
 }
@@ -46,6 +49,14 @@ div {
 
 .divisory {
   border-bottom: 1px solid gray;
+}
+
+.items_input {
+  border: 1px solid;
+}
+
+.msg {
+  color: red;
 }
 
 .shuffle {
@@ -93,6 +104,10 @@ div {
     width: 50%;
   }
   
+  .items_input {
+    width: 100%;
+    height: 80%;
+  }
   .results {
     display: flex;
     flex-direction: column;
