@@ -11,9 +11,9 @@
       <form class="form">
         <p class="ta-center">Escolha a origem da semente que será usada no sorteio</p>
         <select id="seedOrigin" onchange="handleSeedOriginChange(this)">
-          <option value="nist" selected>Farol de aleatoriedade NIST</option>
-          <option value="uchile">Farol de aleatoriedade Universidade do Chile</option>
-          <option value="inmetro">Farol de aleatoriedade INMETRO</option>
+          <option value="nist" selected>Farol de aleatoriedade - NIST</option>
+          <!-- <option value="uchile">Farol de aleatoriedade - Universidade do Chile</option> -->
+          <option value="inmetro">Farol de aleatoriedade - INMETRO</option>
           <option value="user">Inserir manualmente</option>
         </select>
         <label for="seed" id="seed_label" class="seed_label display-none">
@@ -28,9 +28,9 @@
       </form>
     </div>
     <div class="results ta-center">
-      <span class="msg display-none" id="msg"></span>
-      <br>
-      <span class="seed m-auto">Semente utilizada: <br><b id="baseSeed" style="word-break: break-all;"></b></span>
+      <p class="msg display-none" id="msg"></p>
+      <p class="seed m-auto">Semente utilizada: <b id="baseSeed" style="word-break: break-all;"></b></p>
+      <p id="pulse" class="display-none pulseIndex">Index do pulso: <b id="pulseIndex"></b></p>
       <div class="result-list-div ta-center" >
         <p style="font-size: 22px;">Resultado do sorteio</p>
         <ol id="resultList" class="ta-left results-list display-none">

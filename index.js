@@ -8,10 +8,13 @@ const shuffle = async () => {
   let seed;
   if(seedOrigin === 'user'){
     seed = document.getElementById('seed').value || Date.now();
+    document.getElementById('msg').classList.add('display-none');
+    document.getElementById('pulse').classList.add('display-none');
   } else {
     const timestampShuffle = Date.now();
     const timestampPulse = timestampShuffle + 60000;
-    const url = urls[seedOrigin] + timestampPulse;
+    const url = urls[seedOrigin] + timestampShuffle;
+    // const url = urls[seedOrigin] + timestampPulse;
     const dateShuffle = new Date(timestampShuffle);
     const datePulse = new Date(timestampPulse);
 
@@ -22,12 +25,14 @@ const shuffle = async () => {
     const msgElemnt = document.getElementById('msg'); 
     msgElemnt.classList.remove('display-none');
     msgElemnt.textContent = msg;
+
     await wait(60000);
 
     const response = await fetch(url);
     const pulse = (await response.json()).pulse;
     seed = pulse.outputValue;
-
+    document.getElementById('pulse').classList.remove('display-none');
+    document.getElementById('pulseIndex').textContent = pulse.pulseIndex;
   }
   const items = document.getElementById('items').value.split('\n');
 

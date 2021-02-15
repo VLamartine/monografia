@@ -38,9 +38,6 @@ div {
   padding: 1em;
 }
 
-.seed {
-  font-size: 20px;
-}
 .form {
   display: flex;
   flex-direction: column;
@@ -68,6 +65,10 @@ div {
   font-family: Courier, monospace;
 }
 
+.pulseIndex {
+  width: 100%;
+  text-align: left;
+}
 .about {
   background-color: #e8e8e8;
 }
