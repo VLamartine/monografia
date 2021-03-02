@@ -12,21 +12,40 @@ const shuffle = async () => {
     document.getElementById('pulse').classList.add('display-none');
   } else {
     const timestampShuffle = Date.now();
-    const timestampPulse = timestampShuffle + 60000;
-    const url = urls[seedOrigin] + timestampShuffle;
-    // const url = urls[seedOrigin] + timestampPulse;
     const dateShuffle = new Date(timestampShuffle);
+
+    let remainingTime = waitTime = 60 - dateShuffle.getSeconds()
+    const timestampPulse = timestampShuffle + remainingTime * 1000;
     const datePulse = new Date(timestampPulse);
 
-    const msg = `O sorteio foi realizado às ${dateShuffle.getHours()}:${dateShuffle.getMinutes()}.
-      A semente utilizada será o pulso gerado às ${datePulse.getHours()}:${datePulse.getMinutes()}
-    `
-
+    console.log(`timeRemaining: ${remainingTime}`)
+    console.log(`dateShuffle`)
+    console.log(dateShuffle);
+    console.log(dateShuffle.getSeconds());
+    console.log(`datePulse`)
+    console.log(datePulse);
+    console.log(dateShuffle.getSeconds());
+    // const url = urls[seedOrigin] + timestampShuffle;
+    const url = urls[seedOrigin] + timestampPulse;
     const msgElemnt = document.getElementById('msg'); 
     msgElemnt.classList.remove('display-none');
-    msgElemnt.textContent = msg;
 
-    await wait(60000);
+    
+
+    const interval = setInterval(() => {
+      const msg = `O sorteio foi configurado às ${dateShuffle.getHours()}:${dateShuffle.getMinutes() < 10 ? "0" + dateShuffle.getMinutes().toString() : dateShuffle.getMinutes()}.
+      A semente utilizada será o pulso gerado às ${datePulse.getHours()}:${datePulse.getMinutes() < 10 ? "0" + datePulse.getMinutes().toString() : datePulse.getMinutes()}.
+      \nSorteio em ${remainingTime} segundos.
+      `
+      msgElemnt.textContent = msg;
+      remainingTime--;
+      
+    }, 1000);
+
+
+    await wait((remainingTime+1) * 1000);
+
+    clearInterval(interval);
 
     const response = await fetch(url);
     const pulse = (await response.json()).pulse;
