@@ -3,7 +3,7 @@
   <head>
     <title>Sorteio verificável</title>
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.css">
     <script src="index.js"></script>
   </head>
   <body>
@@ -42,12 +42,14 @@
       <p>
         O sorteio é realizado nos seguintes passos:
         <ol>
+          
           <li>Cada item é concatenado da forma: <i> número da linha+item+semente</i>. Formando uma sentença</li>
           <li>Caso nenhuma semente seja informada, será utilizado o timestamp do momento que o sorteio for realizado</li>
           <li>Cada sentença é então, codificada utilizando SHA256 como método</li>
           <li>Por fim, a sequência de códigos em SHA256 é ordenada lexicograficamente</li>
         </ol>
-      </p>       
+      </p>
+      <a href="./sobre.html">Sobre</a>
     </div>
   </body>
 </html>
