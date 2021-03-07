@@ -73,11 +73,7 @@ div {
   background-color: #e8e8e8;
 }
 @media only screen and (min-width: 768px){
-
-  body {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
+  
   
   .form {
     width: 100%;
@@ -90,11 +86,16 @@ div {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70%;
+    height: 100%;
+  }
+
+  .container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
   }
 
   .about {
-    width: 100%;
     border-top: 1px solid gray;
   }
   .divisory {
@@ -117,7 +118,7 @@ div {
     width: 50%;
     box-sizing: border-box;
     flex-grow: 1;
-    height: 60%;
+    height: 100%;
   }
   
   .results-list {

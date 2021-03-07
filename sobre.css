@@ -1,0 +1,24 @@
+body {
+  background-color: #e1e1e1;
+  height: 100%;
+  margin: 0;
+}
+
+.header {
+  padding: 1rem;
+  font-size: 1.25rem;
+}
+.container {
+  padding: 3rem;
+  width: 80%;
+  margin: auto;
+  height: 100%;
+}
+
+.site :is(p){
+  width: 100ch;
+}
+
+.method :is(li){
+  width: 100ch;
+}

@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Sobre</title>
+        <link rel="stylesheet" href="../sobre.css">
+    </head>
+    <body>
+        <div class="header">
+            <a href="./index.html">Back</a>
+        </div>
+        <div class="container">
+            <div class="site">
+                <h1>About this site</h1>
+                <p>The purpose of this site is to make available a random draw tool, transparent and verifiable. Our draw method, described below, guarantees that, for the same input (seed + items in the same order), the result will always be the same.</p>
+            </div>
+            <div class="method">
+                <h1>Draw method</h1>
+                <ol>
+                    <li>The user enters which seed origin they desire
+                        <br>
+                        If the origin is one of the available randomness beacons
+                        <ul>
+                            <li>The seed will be the first pulse after the draw is programmed</li>
+                        </ul>
+                        If the seed is one manually inserted
+                        <ul>
+                            <li>The input valued is used. If there is no input value, the timestamp of the moment that the draw is programmed is used instead</li>
+                        </ul>
+                    </li>
+                    <li>The User enters the items that they want ordered, one per line</li>
+                    <li>Each item is then concatenated in the following order: <i> line number+item+seed</i>. Forming a string</li>
+                    <li>Each string is encrypted, using the SHA256 method.</li>
+                    <li>And at the end, the SHA256 strings are ordered alphabetically</li>
+                </ol>
+            </div>
+        </div>
+
+    </body>
+</html>

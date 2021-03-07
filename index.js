@@ -18,33 +18,25 @@ const shuffle = async () => {
     const timestampPulse = timestampShuffle + remainingTime * 1000;
     const datePulse = new Date(timestampPulse);
 
-    console.log(`timeRemaining: ${remainingTime}`)
-    console.log(`dateShuffle`)
-    console.log(dateShuffle);
-    console.log(dateShuffle.getSeconds());
-    console.log(`datePulse`)
-    console.log(datePulse);
-    console.log(dateShuffle.getSeconds());
     // const url = urls[seedOrigin] + timestampShuffle;
     const url = urls[seedOrigin] + timestampPulse;
     const msgElemnt = document.getElementById('msg'); 
     msgElemnt.classList.remove('display-none');
 
-    
+    document.getElementById("dateShuffle").textContent =`${dateShuffle.getHours()}:${dateShuffle.getMinutes() < 10 ? "0" + dateShuffle.getMinutes().toString() : dateShuffle.getMinutes()}`
+    document.getElementById("datePulse").textContent = `${datePulse.getHours()}:${datePulse.getMinutes() < 10 ? "0" + datePulse.getMinutes().toString() : datePulse.getMinutes()}`;
+    const remainingTimeElement = document.getElementById("remainingTime");
+    remainingTimeElement.textContent = remainingTime
 
     const interval = setInterval(() => {
-      const msg = `O sorteio foi configurado às ${dateShuffle.getHours()}:${dateShuffle.getMinutes() < 10 ? "0" + dateShuffle.getMinutes().toString() : dateShuffle.getMinutes()}.
-      A semente utilizada será o pulso gerado às ${datePulse.getHours()}:${datePulse.getMinutes() < 10 ? "0" + datePulse.getMinutes().toString() : datePulse.getMinutes()}.
-      \nSorteio em ${remainingTime} segundos.
-      `
-      msgElemnt.textContent = msg;
+      remainingTimeElement.textContent = remainingTime
       remainingTime--;
       
     }, 1000);
 
 
     await wait((remainingTime+1) * 1000);
-
+    msgElemnt.classList.add('display-none');
     clearInterval(interval);
 
     const response = await fetch(url);
@@ -106,4 +98,8 @@ const handleSeedOriginChange = (element) => {
 
 const wait = (ms) => {
   return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+const changeLanguage = (language) => {
+  this.location.pathname = this.location.pathname.replace(/\/[a-z]{2}\//, `/${language.value}/`);
 }
