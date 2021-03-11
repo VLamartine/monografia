@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>Sobre</title>
+        <script src="../sobre.js"></script>
         <link rel="stylesheet" href="../sobre.css">
     </head>
     <body>
@@ -19,11 +20,11 @@
                         <br>
                         Caso seja utilizada uma semente dos faróis de aleatoriedade disponíveis
                         <ul>
-                            <li>A semente utilizada é o próximo pulso gerado depois que o sorteio é configurado</li>
+                            <li>A semente utilizada é o próximo pulso gerado depois que o sorteio é programado</li>
                         </ul>
                         Caso a semente seja fornecida manualmente
                         <ul>
-                            <li>É utilizado o valor fornecido, ou caso esteja em branco, é o utilizado o timestamp do momento que o sorteio é configurado</li>
+                            <li>É utilizado o valor fornecido, ou caso esteja em branco, é o utilizado o timestamp do momento que o sorteio é programado</li>
                         </ul>
                     </li>
                     <li>Os itens que devem ser ordenados são informados, separados um por linha</li>
@@ -33,6 +34,11 @@
                 </ol>
             </div>
         </div>
-
+        <div class="about">
+            <select name="language" id="language" onchange="changeLanguage(this)">
+                <option value="pt" selected>Português</option>
+                <option value="en">Inglês</option>
+            </select>
+        </div>
     </body>
 </html>
