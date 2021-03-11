@@ -21,11 +21,28 @@
             Inserir semente
             <input id="seed" class="w-50 m-auto" type="text" placeholder="Semente">
           </label>
+          <div class="timeSeed" id="timeSeed">
+            <div class="timeOptions">
+              <label class="optionsLabel" for="future">
+                <input type="radio" onclick="handlePulseTimeChange(this)" name="time" id="future" value="future" checked>
+                Usar próximo pulso
+              </label>
+              <label class="optionsLabel" for="past">
+                <input type="radio" onclick="handlePulseTimeChange(this)" name="time" id="past" value="past">
+                Escolher pulso já gerado
+              </label>
+            </div>
+            <div class="datetime display-none" id="datetime">
+              <input type="date" id="date" onchange="handleTimeChange()">
+              <input type="time" id="time" onchange="handleTimeChange()">
+              <span id="timeError" class="timeError display-none">Não é possível utilizar um horário do futuro</span>
+            </div>
+          </div>
           <p class="ta-center">
             Digite ou copie os itens abaixo, cada um em uma linha
           </p>
           <textarea id="items" class="items_input" class="m-auto border"></textarea>
-          <button type="button" onclick="shuffle()" class="shuffle border">Sortear</button>
+          <button type="button" onclick="shuffle()" id="submit" class="shuffle border">Sortear</button>
         </form>
       </div>
       <div class="results ta-center">

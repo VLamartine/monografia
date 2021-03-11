@@ -21,6 +21,23 @@
             Insert Seed
             <input id="seed" class="w-50 m-auto" type="text" placeholder="Seed">
           </label>
+          <div class="timeSeed" id="timeSeed">
+            <div class="timeOptions">
+              <label class="optionsLabel" for="future">
+                <input type="radio" onclick="handlePulseTimeChange(this)" name="time" id="future" value="future" checked>
+                Use next pulse
+              </label>
+              <label class="optionsLabel" for="past">
+                <input type="radio" onclick="handlePulseTimeChange(this)" name="time" id="past" value="past">
+                Choose previous pulse
+              </label>
+            </div>
+            <div class="datetime display-none" id="datetime">
+              <input type="date" id="date" onchange="handleTimeChange()">
+              <input type="time" id="time" onchange="handleTimeChange()">
+              <span id="timeError" class="timeError display-none">You can't use a time in the future.</span>
+            </div>
+          </div>
           <p class="ta-center">
             Insert the items below, one per line
           </p>
