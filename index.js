@@ -55,7 +55,7 @@ const shuffle = async () => {
     document.getElementById('pulseIndex').textContent = pulseIndex;
   }
 
-  const hashedItems = await hashItems(items.split("\n"));
+  const hashedItems = await hashItems(items.split("\n"), seed);
 
   hashedItems.sort((a, b) => a.hash.localeCompare(b.hash));
 
