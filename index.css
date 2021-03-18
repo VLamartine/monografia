@@ -167,4 +167,21 @@ div {
     height: 90%;
     box-sizing: border-box;
   }
+
+  .formated-data-table {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .formated-data-table > tbody > tr > td:nth-child(2) {
+  font-family: Courier, monospace;
+  }
+
+  .formated-data {
+    border: 1px solid black;
+    max-height: 100%;
+    overflow-y: auto;
+    margin-top: 1rem;
+  }
 }

@@ -58,7 +58,6 @@ const shuffle = async () => {
 
       url += pulse.timestamp;
     }
-    console.log(url);
     const {outputValue, pulseIndex} = await fetchPulse(url);
 
     seed = outputValue;
@@ -88,7 +87,7 @@ const getPulseTimestamp = (timestamp, waitTime) => {
     const [ hour, minute ] = document.getElementById('time').value.split(':');
     
     const date = new Date(year, month - 1, day, hour, minute);
-    console.log(date);
+
     return {
       date,
       timestamp: date.getTime(),
@@ -105,9 +104,23 @@ const fetchPulse = async (url) => {
 }
 
 const hashItems = (items, seed) => {
+  removeClass('formatedData', 'display-none');
+  const tableElement = document.getElementById('formatedDataTable');
+  tableElement.innerHTML = '';
+
   return Promise.all(items.map(async (item, i) => {
+    const sentence = `${i+1}${item}${seed}`;
+    const hashed = await sha256(sentence);
+    const row = document.createElement('tr');
+    const sentenceTD = document.createElement('td');
+    sentenceTD.appendChild(document.createTextNode(sentence));
+    const hashedTD = document.createElement('td');
+    hashedTD.appendChild(document.createTextNode(hashed));
+    row.appendChild(sentenceTD);
+    row.appendChild(hashedTD);
+    tableElement.appendChild(row);
     return {
-      hash: await sha256(`${i+1}${item}${seed}`),
+      hash: hashed,
       value: item
     };
   }))
