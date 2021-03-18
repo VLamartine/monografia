@@ -4,6 +4,10 @@ const urls = {
   uchile: 'https://random.uchile.cl/beacon/2.0/pulse/time/',
 }
 
+const lastPulseUrls = {
+  nist: 'https://beacon.nist.gov/beacon/2.0/pulse/last',
+  inmetro: 'beacon.inmetro.gov.br/beacon/2.0/pulse/last',
+}
 
 const shuffle = async () => {
   const { seedOrigin, items } = getFormData();
@@ -23,31 +27,38 @@ const shuffle = async () => {
     const pulse = getPulseTimestamp(shuffle.timestamp, waitTime);
 
     const { value } = document.querySelector(`input[type='radio'][name='time']:checked`);
-    let url = urls[seedOrigin];
-    if(value === "future"){
-      url += 'previous/';
-      removeClass('msg', 'display-none');
+    let url;
 
-      shuffle.element.textContent =`${shuffle.date.getHours()}:${shuffle.date.getMinutes() < 10 ? "0" + shuffle.date.getMinutes().toString() : shuffle.date.getMinutes()}`
-      pulse.element.textContent = `${pulse.date.getHours()}:${pulse.date.getMinutes() < 10 ? "0" + pulse.date.getMinutes().toString() : pulse.date.getMinutes()}`;
+    if(value === "last"){
+      url = lastPulseUrls[seedOrigin]
+    } else {
+      url = urls[seedOrigin];
+      
+      if(value === "future"){
+        url += 'previous/';
+        removeClass('msg', 'display-none');
 
-      const remainingTimeElement = document.getElementById("remainingTime");
-      
-      remainingTimeElement.textContent = waitTime
-      
-      const interval = setInterval(() => {
+        shuffle.element.textContent =`${shuffle.date.getHours()}:${shuffle.date.getMinutes() < 10 ? "0" + shuffle.date.getMinutes().toString() : shuffle.date.getMinutes()}`
+        pulse.element.textContent = `${pulse.date.getHours()}:${pulse.date.getMinutes() < 10 ? "0" + pulse.date.getMinutes().toString() : pulse.date.getMinutes()}`;
+
+        const remainingTimeElement = document.getElementById("remainingTime");
+        
         remainingTimeElement.textContent = waitTime
-        waitTime--;
-      }, 1000);
-    
-      await wait((waitTime+1) * 1000);
-      addClass('msg', 'display-none');
+        
+        const interval = setInterval(() => {
+          remainingTimeElement.textContent = waitTime
+          waitTime--;
+        }, 1000);
       
-      clearInterval(interval);
+        await wait((waitTime+1) * 1000);
+        addClass('msg', 'display-none');
+        
+        clearInterval(interval);
+      }
+
+      url += pulse.timestamp;
     }
-
-    url += pulse.timestamp;
-
+    console.log(url);
     const {outputValue, pulseIndex} = await fetchPulse(url);
 
     seed = outputValue;
