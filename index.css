@@ -184,4 +184,8 @@ div {
     overflow-y: auto;
     margin-top: 1rem;
   }
+  
+  #formatedDataTable {
+    word-break: break-all;
+  }
 }
