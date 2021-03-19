@@ -173,7 +173,10 @@ div {
     width: 100%;
     text-align: center;
   }
-
+  
+  .formated-data-table > tbody > tr > td {
+    padding: 0.5rem;
+  }
   .formated-data-table > tbody > tr > td:nth-child(2) {
   font-family: Courier, monospace;
   }
