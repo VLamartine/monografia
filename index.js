@@ -6,7 +6,7 @@ const urls = {
 
 const lastPulseUrls = {
   nist: 'https://beacon.nist.gov/beacon/2.0/pulse/last',
-  inmetro: 'beacon.inmetro.gov.br/beacon/2.0/pulse/last',
+  inmetro: 'https://beacon.inmetro.gov.br/beacon/2.0/pulse/last',
 }
 
 const shuffle = async () => {
