@@ -5,6 +5,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link rel="stylesheet" href="../index.css">
     <script src="../index.js"></script>
+    <meta charset="utf-8">
   </head>
   <body>
     <div class="container">
@@ -23,13 +24,13 @@
           </label>
           <div class="timeSeed" id="timeSeed">
             <div class="timeOptions">
-              <label class="optionsLabel" for="future">
-                <input type="radio" onclick="handlePulseTimeChange(this)" name="time" id="future" value="future" checked>
-                Usar próximo pulso
-              </label>
               <label class="optionsLabel" for="last">
-                <input type="radio" onclick="handlePulseTimeChange(this)" name="time" id="last" value="last">
+                <input type="radio" onclick="handlePulseTimeChange(this)" name="time" id="last" value="last" checked>
                 Usar último pulso
+              </label>
+              <label class="optionsLabel" for="future">
+                <input type="radio" onclick="handlePulseTimeChange(this)" name="time" id="future" value="future">
+                Usar próximo pulso
               </label>
               <label class="optionsLabel" for="past">
                 <input type="radio" onclick="handlePulseTimeChange(this)" name="time" id="past" value="past">
