@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio com pesos</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/comPeso.css">
+
+    <script src="/js/main.js"></script>
+    <script src="/js/comPeso.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <a href="../sorteio" class="drawCategories">Sorteio aleatório</a>
+        <a href="../comPesos" class="drawCategories">Sorteio com pesos</a>
+    </header>
+    <div class="container">
+        <div class="data">
+            <form class="form">
+                <p class="ta-center">Escolha a origem da semente que será usada no sorteio</p>
+                <select id="seedOrigin" onchange="handleSeedOriginChange(this)">
+                    <option value="nist" selected>Farol de aleatoriedade - NIST</option>
+                    <option value="uchile">Farol de aleatoriedade - Universidade do Chile</option>
+                    <option value="inmetro">Farol de aleatoriedade - INMETRO</option>
+                    <option value="user">Inserir manualmente</option>
+                </select>
+                <label for="seed" id="user-seed" class="user-seed display-none">
+                    Inserir semente
+                    <input id="seed" class="w-50 m-auto" type="text" placeholder="Semente">
+                </label>
+                <div class="beacon-seed" id="beacon-seed">
+                    <div class="timeOptions">
+                        <label class="optionsLabel" for="last">
+                            <input type="radio" onclick="handlePulseTimeChange(this)" name="time" id="last" value="last"
+                                checked>
+                            Usar último pulso
+                        </label>
+                        <label class="optionsLabel" for="future">
+                            <input type="radio" onclick="handlePulseTimeChange(this)" name="time" id="future"
+                                value="future">
+                            Usar próximo pulso
+                        </label>
+                        <label class="optionsLabel" for="past">
+                            <input type="radio" onclick="handlePulseTimeChange(this)" name="time" id="past"
+                                value="past">
+                            Escolher pulso já gerado
+                        </label>
+                    </div>
+                    <div class="datetime display-none" id="datetime">
+                        <input type="date" id="date" onchange="handleTimeChange()">
+                        <input type="time" id="time" onchange="handleTimeChange()">
+                        <span id="timeError" class="timeError display-none">Não é possível utilizar um horário do
+                            futuro</span>
+                    </div>
+                </div>
+                <p class="ta-center">
+                    Escolha quantos itens deseja adicionar (Máx: 50) <input type="number" min="1" max="50"
+                        onblur="handleChangeNumberItems(this)" value="12">
+                </p>
+                <table>
+                    <thead>
+
+                        <tr>
+                            <th class="bordered">nº</th>
+                            <th class="bordered w-75">Item</th>
+                            <th class="bordered">Peso</th>
+                        </tr>
+                    </thead>
+                    <tbody id="options">
+                    </tbody>
+
+                </table>
+                <button type="button" onclick="shuffle()" id="submit" class="shuffle border">Sortear</button>
+            </form>
+        </div>
+        <div id="results" class="results ta-center">
+            <h3>Resultado</h3>
+            <p class="countdown-message display-none" id="msg">
+                O sorteio foi programado às <span id="dateShuffle"></span>.
+                A semente utilizada será o pulso gerado às <span id="datePulse"></span>.
+                <br>
+                Sorteio em <span id="remainingTime"></span> segundos.
+            </p>
+            <div id="result-details" class="display-none">
+
+                <p class="w-100 ta-left">Semente utilizada: <b id="baseSeed" style="word-break: break-all;"></b></p>
+                <p id="pulse" class="w-100 ta-left">Index do pulso: <b id="pulseIndex"></b></p>
+                <p class="w-100 ta-left">Número gerado: <b id="number"></b></p>
+                <p class="w-100 ta-left">Ganhador: <b id="winner"></b></p>
+            </div>
+            <table id="resultsTable" class="w-100 display-none">
+                <thead>
+                    <tr>
+                        <th class="bordered">nº</th>
+                        <th class="bordered">Item</th>
+                        <th class="bordered">Chance</th>
+                        <th class="bordered">Intervalo</th>
+                    </tr>
+                </thead>
+                <tbody id="results-list">
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="about">
+        <a href="./sobre.html">Sobre</a> |
+        <select name="language" id="language" onchange="changeLanguage(this)">
+            <option value="pt" selected>Português</option>
+            <option value="en">Inglês</option>
+        </select>
+    </div>
+</body>
+
+</html>
