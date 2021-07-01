@@ -35,7 +35,6 @@ const getBeaconSeed = async (beacon, time) => {
             let pulseTime = new Date(pulseTimestamp)
             pulseTime = pulseTime.toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' });
             const waitTime = pulseTimestamp - Date.now() + 1000;
-            debugger;
             const countdown = printCountdown(waitTime, now, pulseTime);
             await wait(waitTime);
             removeCountdown(countdown);
@@ -164,7 +163,6 @@ const setMaxDate = () => {
 
 const printCountdown = (time, timeConfigured, timePulse) => {
     removeClass('msg', 'display-none');
-    console.log(document.getElementById("dateShuffle"));
     document.getElementById("dateShuffle").textContent = timeConfigured;
     document.getElementById("datePulse").textContent = timePulse;
 
