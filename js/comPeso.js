@@ -89,9 +89,9 @@ const calculateProbability = (values, totalWeight) => {
 }
 
 const calculateWinner = async (seed, numberItems) => {
-    const sentence = `${seed}${numberItems}`;
-    const hashed = Number(`0x${await sha256(sentence)}`);
-    const result = 100 * (hashed / (Math.pow(2, 256)));
+    const sentence = `${seed}`;
+    const hashed = Number(`0x${sentence}`);
+    const result = 100 * (hashed / (Math.pow(2, 512)));
     return +result.toPrecision(6);
 }
 const getFormData = () => {
