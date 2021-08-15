@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar sorteio</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/verificar.css">
+
+    <script src="../../js/verificar.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <a href="../sorteio" class="drawCategories">Sorteio aleatório</a>
+        <a href="../comPesos" class="drawCategories">Sorteio com pesos</a>
+        <a href="../verificar" class="drawCategories">Verificar</a>
+    </header>
+    <div class="input-div">
+        <input type="text" placeholder="Insira a chave do sorteio" id="keyInput">
+        <button onclick="getDrawFromServer()">Verificar</button>
+    </div>
+    <div class="display-none" id="content">
+        <div class="ta-center">
+            <p> <b>Origem da semente: </b> <span id="seedOrigin"></span></p>
+            <p> <b>Semente: </b> <span id="seed"></span></p>
+            <p> <b>Pulso da semente: </b> <span id="seedPulse"></span></p>
+        </div>
+        <div>
+            <h2 class="ta-center">Itens</h2>
+            <table class="m-auto">
+                <thead>
+                    <td class="ta-center bordered w-50px">Nº</td>
+                    <td class="ta-center bordered min-w-200">Item</td>
+                    <td class="ta-center display-none bordered w-50px" id="weightColumn">Peso</td>
+                </thead>
+                <tbody id="itens"></tbody>
+            </table>
+        </div>
+        <div>
+            <h2 class="ta-center">Resultado <span id="weightResult"></span></h2>
+            <table class="m-auto">
+
+                <thead>
+                    <td class="ta-center bordered w-50px">Nº</td>
+                    <td class="ta-center bordered min-w-200">Item</td>
+                    <td class="ta-center display-none bordered w-50px" id="weightResultColumn">Peso</td>
+                    <td class="ta-center display-none bordered w-100px" id="chanceColumn">Chance</td>
+                    <td class="ta-center display-none bordered w-200px" id="intervalColumn">Intervalo</td>
+                    <td class="ta-center display-none bordered w-200px" id="hashColumn">Hash</td>
+                </thead>
+                <tbody id="itensResult"></tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

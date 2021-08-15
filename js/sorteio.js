@@ -12,6 +12,8 @@ const lastPulseUrls = {
 
 const shuffle = async () => {
   const { seedOrigin, items } = getFormData();
+  const body = { seedOrigin };
+
   let seed;
   if (seedOrigin === 'user') {
     seed = document.getElementById('seed').value || Date.now();
@@ -60,7 +62,7 @@ const shuffle = async () => {
       url += pulse.timestamp;
     }
     const { outputValue, pulseIndex } = await fetchPulse(url);
-
+    body['pulseIndex'] = pulseIndex;
     seed = outputValue;
     removeClass('pulse', 'display-none');
     document.getElementById('pulseIndex').textContent = pulseIndex;
@@ -68,9 +70,16 @@ const shuffle = async () => {
 
   const hashedItems = await hashItems(items.split("\n"), seed);
 
+  body['rawData'] = items.split('\n');
   hashedItems.sort((a, b) => a.hash.localeCompare(b.hash));
 
+  body['data'] = hashedItems;
+  body['seed'] = seed;
+  body['drawType'] = 'normal'
+
   document.getElementById('baseSeed').textContent = seed;
+  const keyResponse = await sendDrawToServer(body);
+  document.getElementById('key').innerText = keyResponse.key;
   displayList(hashedItems);
 }
 

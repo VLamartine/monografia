@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorteio com pesos</title>
+    <title>Weighted draw</title>
 
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/comPeso.css">
@@ -17,22 +17,22 @@
 
 <body>
     <header class="header">
-        <a href="../sorteio" class="drawCategories">Sorteio aleatório</a>
-        <a href="../comPesos" class="drawCategories">Sorteio com pesos</a>
-        <a href="../verificar" class="drawCategories">Verificar</a>
+        <a href="../sorteio" class="drawCategories">Random draw</a>
+        <a href="../comPesos" class="drawCategories">Weighted draw</a>
+        <a href="../verificar" class="drawCategories">Verify</a>
     </header>
     <div class="container">
         <div class="data">
             <form class="form">
-                <p class="ta-center">Escolha a origem da semente que será usada no sorteio</p>
+                <p class="ta-center">Choose the origin for the draw's seed</p>
                 <select id="seedOrigin" onchange="handleSeedOriginChange(this)">
-                    <option value="nist" selected>Farol de aleatoriedade - NIST</option>
-                    <option value="uchile">Farol de aleatoriedade - Universidade do Chile</option>
-                    <option value="inmetro">Farol de aleatoriedade - INMETRO</option>
+                    <option value="nist" selected>Randomness Beacon - NIST</option>
+                    <option value="uchile">Randomness Beacon - University of Chile</option>
+                    <option value="inmetro">Randomness Beacon - INMETRO</option>
                     <!-- <option value="user">Inserir manualmente</option> -->
                 </select>
                 <label for="seed" id="user-seed" class="user-seed display-none">
-                    Inserir semente
+                    Insert Seed
                     <input id="seed" class="w-50 m-auto" type="text" placeholder="Semente">
                 </label>
                 <div class="beacon-seed" id="beacon-seed">
@@ -40,28 +40,27 @@
                         <label class="optionsLabel" for="last">
                             <input type="radio" onclick="handlePulseTimeChange(this)" name="time" id="last" value="last"
                                 checked>
-                            Usar último pulso
+                            Use last pulse
                         </label>
                         <label class="optionsLabel" for="future">
                             <input type="radio" onclick="handlePulseTimeChange(this)" name="time" id="future"
                                 value="future">
-                            Usar próximo pulso
+                            Use next pulse
                         </label>
                         <label class="optionsLabel" for="past">
                             <input type="radio" onclick="handlePulseTimeChange(this)" name="time" id="past"
                                 value="past">
-                            Escolher pulso já gerado
+                            Choose previous pulse
                         </label>
                     </div>
                     <div class="datetime display-none" id="datetime">
                         <input type="date" id="date" onchange="handleTimeChange()">
                         <input type="time" id="time" onchange="handleTimeChange()">
-                        <span id="timeError" class="timeError display-none">Não é possível utilizar um horário do
-                            futuro</span>
+                        <span id="timeError" class="timeError display-none">You can't use a time in the future.</span>
                     </div>
                 </div>
                 <p class="ta-center">
-                    Escolha quantos itens deseja adicionar (Máx: 50) <input type="number" min="1" max="50"
+                    Choose how many itens will be inserted (Max: 50) <input type="number" min="1" max="50"
                         onblur="handleChangeNumberItems(this)" value="12">
                 </p>
                 <table>
@@ -70,30 +69,30 @@
                         <tr>
                             <th class="bordered">nº</th>
                             <th class="bordered w-75">Item</th>
-                            <th class="bordered">Peso</th>
+                            <th class="bordered">Weight</th>
                         </tr>
                     </thead>
                     <tbody id="options">
                     </tbody>
 
                 </table>
-                <button type="button" onclick="shuffle()" id="submit" class="shuffle border">Sortear</button>
+                <button type="button" onclick="shuffle()" id="submit" class="shuffle border">Draw</button>
             </form>
         </div>
         <div id="results" class="results ta-center">
-            <h3>Resultado</h3>
+            <h3>Result</h3>
             <p class="countdown-message display-none" id="msg">
-                O sorteio foi programado às <span id="dateShuffle"></span>.
-                A semente utilizada será o pulso gerado às <span id="datePulse"></span>.
+                Draw programmed at <span id="dateShuffle"></span>.
+                The seed for the draw is the pulse generated at <span id="datePulse"></span>.
                 <br>
-                Sorteio em <span id="remainingTime"></span> segundos.
+                Draw in <span id="remainingTime"></span> seconds.
             </p>
             <div id="result-details" class="display-none">
 
-                <p class="w-100 ta-left">Semente utilizada: <b id="baseSeed" style="word-break: break-all;"></b></p>
-                <p id="pulse" class="w-100 ta-left">Index do pulso: <b id="pulseIndex"></b></p>
-                <p class="w-100 ta-left">Número gerado: <b id="number"></b></p>
-                <p class="w-100 ta-left">Ganhador: <b id="winner"></b></p>
+                <p class="w-100 ta-left">Seed: <b id="baseSeed" style="word-break: break-all;"></b></p>
+                <p id="pulse" class="w-100 ta-left">Pulse index: <b id="pulseIndex"></b></p>
+                <p class="w-100 ta-left">Generated number: <b id="number"></b></p>
+                <p class="w-100 ta-left">Winner: <b id="winner"></b></p>
             </div>
             <table id="resultsTable" class="w-100 display-none">
                 <thead>
@@ -101,23 +100,23 @@
                         <th class="bordered">nº</th>
                         <th class="bordered">Item</th>
                         <th class="bordered">Chance</th>
-                        <th class="bordered">Intervalo</th>
+                        <th class="bordered">Interval</th>
                     </tr>
                 </thead>
                 <tbody id="results-list">
                 </tbody>
             </table>
             <div class="result-key display-none" id="key-container">
-                Chave do sorteio: <span id="key"></span>
+                Draw key: <span id="key"></span>
             </div>
         </div>
 
     </div>
     <div class="about">
-        <a href="./sobre.html">Sobre</a> |
+        <a href="./sobre.html">About</a> |
         <select name="language" id="language" onchange="changeLanguage(this)">
             <option value="pt" selected>Português</option>
-            <option value="en">Inglês</option>
+            <option value="en">English</option>
         </select>
     </div>
 </body>

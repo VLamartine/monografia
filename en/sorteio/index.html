@@ -11,6 +11,11 @@
 </head>
 
 <body>
+  <header class="header">
+    <a href="../sorteio" class="drawCategories">Random draw</a>
+    <a href="../comPesos" class="drawCategories">Weighted draw</a>
+    <a href="../verificar" class="drawCategories">Verify</a>
+  </header>
   <div class="container">
     <div class="data divisory">
       <form class="form">
@@ -77,6 +82,9 @@
         <p style="font-size: 22px;">Draw results</p>
         <ol id="resultList" class="ta-left results-list display-none">
         </ol>
+      </div>
+      <div class="result-key">
+        Draw key: <span id="key"></span>
       </div>
     </div>
   </div>

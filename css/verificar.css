@@ -1,0 +1,29 @@
+.input-div {
+    display: flex;
+    justify-content: center;
+}
+
+.input-div > input {
+    margin-right: 16px;
+    width: 300px;
+}
+
+.w-50px {
+    width: 50px;
+}
+
+.w-100px {
+    width: 100px;
+}
+
+.w-200px {
+    width: 200px;
+}
+
+.min-w-200 {
+    min-width: 200px;
+}
+
+.winner {
+    background-color: #d0d0d0;
+}

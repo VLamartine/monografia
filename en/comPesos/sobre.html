@@ -1,9 +1,10 @@
 <html>
 
 <head>
-    <title>Sobre</title>
-    <script src="/js/sobre.js"></script>
-    <link rel="stylesheet" href="/css/sobre.css">
+    <title>About</title>
+    <script src="../../js/sobre.js"></script>
+    <link rel="stylesheet" href="../../css/sobre.css">
+    <meta charset="utf-8">
 </head>
 
 <body>
@@ -18,7 +19,7 @@
                 result will always be the same.</p>
         </div>
         <div class="method">
-            <h1>Draw method</h1>
+            <h1>Weighted draw method</h1>
             <ol>
                 <li>The user enters which seed origin they desire
                     <br>
@@ -28,24 +29,19 @@
                         <li>The next pulse</li>
                         <li>A pulse from a specific time from the past</li>
                     </ul>
-                    If the seed is one manually inserted
-                    <ul>
-                        <li>The input valued is used. If there is no input value, the timestamp of the moment that the
-                            draw is programmed is used instead</li>
-                    </ul>
                 </li>
-                <li>The User enters the items that they want ordered, one per line</li>
-                <li>Each item is then concatenated in the following order: <i> line number+item+seed</i>. Forming a
-                    string</li>
-                <li>Each string is encrypted, using the SHA256 method.</li>
-                <li>And at the end, the SHA256 strings are ordered alphabetically</li>
+                <li>The User enters the items that they want ordered, one per line, with its weight</li>
+                <li>Each item gets a chance that is equal to its weight divided by the total sum of the weight. With 4
+                    decimal places</li>
+                <li>Each item is placed in an interval from 0 to 100, and gets a subinterval equal to its chance</li>
+                <li>The seed is divided by 2^512, and the item that has the result in its interval is the winner</li>
             </ol>
         </div>
     </div>
     <div class="about">
         <select name="language" id="language" onchange="changeLanguage(this)">
-            <option value="pt">Portuguese</option>
-            <option value="en" selected>English</option>
+            <option value="pt" selected>Português</option>
+            <option value="en">English</option>
         </select>
     </div>
 </body>

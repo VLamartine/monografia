@@ -29,7 +29,6 @@ const handleChangeNumberItems = ({ value }) => {
 }
 
 const shuffle = async () => {
-
     const { seedOrigin, seedTime, values } = getFormData();
 
     if (values.every(value => value.item == "")) return;
@@ -37,6 +36,7 @@ const shuffle = async () => {
         alert("Você deve definir o peso dos itens");
         return;
     }
+    addClass('key-container', 'display-none');
     let seed;
     let pulseIndex = null;
     switch (seedOrigin) {
@@ -59,6 +59,19 @@ const shuffle = async () => {
         return winner >= item.min && winner <= item.max;
     });
 
+    const body = {
+        seed,
+        seedOrigin,
+        pulseIndex,
+        winner,
+        weightedValues,
+        drawType: 'weighted'
+    }
+
+    const keyResponse = await sendDrawToServer(body);
+
+    document.getElementById('key').innerText = keyResponse.key;
+    removeClass('key-container', 'display-none');
     showResultDetails(seed, winner, weightedValues[winnerIndex], pulseIndex)
     printResultList(weightedValues, winnerIndex);
 }

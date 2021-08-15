@@ -185,3 +185,17 @@ const removeCountdown = (countdownId) => {
 const wait = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
+
+const sendDrawToServer = async (body) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify(body)
+    }
+    const url = 'https://monografia-server.herokuapp.com';
+    const response = await fetch(url, options);
+    return response.json();
+}

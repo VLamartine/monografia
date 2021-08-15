@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <title>Sobre</title>
+    <script src="../../js/sobre.js"></script>
+    <link rel="stylesheet" href="../../css/sobre.css">
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <div class="header">
+        <a href="./index.html">Voltar</a>
+    </div>
+    <div class="container">
+        <div class="site">
+            <h1>Sobre o site</h1>
+            <p>O objetivo desse site é disponibilizar uma ferramenta de sorteios aleatórios que seja transparente e
+                verificável. O método de sorteio, descrito abaixo, garante que, dada as mesmas entradas (sementes +
+                itens na mesma ordem), o resultado será sempre o mesmo</p>
+        </div>
+        <div class="method">
+            <h1>Método de sorteio com pesos</h1>
+            <ol>
+                <li>É informado qual a origem de semente que deseja utilizar
+                    <br>
+                    Caso seja utilizada uma semente dos faróis de aleatoriedade disponíveis, a semente utilizada por
+                    ser:
+                    <ul>
+                        <li>O último pulso (Padrão)</li>
+                        <li>O próximo pulso</li>
+                        <li>Um pulso de horário específico do passado</li>
+                    </ul>
+                </li>
+                <li>Os itens são informados, separados um por linha, com os respectivos pesos que terão no sorteio</li>
+                <li>Cada item recebe uma chance equivalente a seu peso, dividido pela soma total dos pesos. Com 4 casas
+                    decimais de precisão</li>
+                <li>CAda item é posicionado em uma régua, de 0 a 100, com o intervalo respectivo a sua chance</li>
+                <li>A semente fornecida é dividida por 2^512, e o item que possuir o resultado dessa divisão no seu
+                    intervalo, é considerado o vencedor</li>
+            </ol>
+        </div>
+    </div>
+    <div class="about">
+        <select name="language" id="language" onchange="changeLanguage(this)">
+            <option value="pt" selected>Português</option>
+            <option value="en">Inglês</option>
+        </select>
+    </div>
+</body>
+
+</html>
