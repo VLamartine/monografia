@@ -13,7 +13,7 @@ const lastPulseUrls = {
 const shuffle = async () => {
   const { seedOrigin, items } = getFormData();
   const body = { seedOrigin };
-
+  addClass('hash-buttons', 'display-none');
   let seed;
   if (seedOrigin === 'user') {
     seed = document.getElementById('seed').value || Date.now();
@@ -80,6 +80,7 @@ const shuffle = async () => {
   document.getElementById('baseSeed').textContent = seed;
   const keyResponse = await sendDrawToServer(body);
   document.getElementById('key').innerText = keyResponse.key;
+  removeClass('hash-buttons', 'display-none');
   displayList(hashedItems);
 }
 
@@ -106,8 +107,6 @@ const getPulseTimestamp = (timestamp, waitTime) => {
   }
 }
 
-
-
 const hashItems = (items, seed) => {
   removeClass('formatedData', 'display-none');
   const tableElement = document.getElementById('formatedDataTable');
@@ -131,18 +130,13 @@ const hashItems = (items, seed) => {
   }))
 }
 
-
-
-
-
 const displayList = (items) => {
   const list = document.getElementById('resultList');
   list.innerHTML = '';
 
   items.forEach(item => {
     const li = document.createElement("li");
-    const value = document.createTextNode(`(0x${item.hash.substr(0, 10).toUpperCase()}...) ${item.value}`);
-    li.appendChild(value);
+    li.innerHTML = `<span name='resultItemHash' class='display-none'>(0x${item.hash.substr(0, 10).toUpperCase()}...) </span>${item.value}`;
 
     list.appendChild(li);
   });
@@ -151,8 +145,22 @@ const displayList = (items) => {
 }
 
 
-
-
+const toggleHash = (show) => {
+  elements = document.getElementsByName('resultItemHash');
+  if (show) {
+    elements.forEach(element => {
+      element.classList.remove('display-none');
+    })
+    addClass('hash-button-show', 'display-none');
+    removeClass('hash-button-hide', 'display-none');
+  } else {
+    elements.forEach(element => {
+      element.classList.add('display-none');
+    })
+    removeClass('hash-button-show', 'display-none');
+    addClass('hash-button-hide', 'display-none');
+  }
+}
 const getFormData = () => {
   const seedOrigin = document.getElementById('seedOrigin').value;
   const items = document.getElementById('items').value;
